@@ -1,8 +1,12 @@
-# 🖥️ 3D Monitor Scene with Glowing Text (React Three Fiber Portfolio)
+# 🖥️ React Three Fiber Portfolio-SDE | Data Engineer)
 
 This project is a **3D portfolio website** built using [React Three Fiber](https://docs.pmnd.rs/react-three-fiber). It features a stylized 3D monitor playing a video, glowing floating text, and a smooth interactive experience — all rendered with WebGL in real-time.
+I am showing my work experience,projects.
 
-> ✨ Designed to showcase creativity, motion, and frontend 3D skills.
+Special thanks to community letting me borrow the free 3D assets for this personal showcase.
+The monitor,screen and desk was created by me using blender.
+
+
 
 ---
 

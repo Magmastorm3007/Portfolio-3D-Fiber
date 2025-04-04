@@ -13,30 +13,48 @@ function Monitor() {
   const rotating = useRef(true); // Flag to check if rotation is in progress
 
   useEffect(() => {
-    if (animations.length > 0) {
-      mixer.current = new THREE.AnimationMixer(scene);
-      animations.forEach((clip) => {
-        const action = mixer.current.clipAction(clip);
-        action.play();
-      });
-    }
+    const setupScene = async () => {
+      try {
+        // Setup animations if available
+        if (animations.length > 0) {
+          mixer.current = new THREE.AnimationMixer(scene);
+          animations.forEach((clip) => {
+            const action = mixer.current.clipAction(clip);
+            action.play();
+          });
+        }
 
-    const video = document.createElement("video");
-    video.src = "/assets/video.mp4";
-    video.loop = true;
-    video.muted = true;
-    video.play();
+        // Create and configure video element
+        const video = document.createElement("video");
+        video.src = "/assets/video.mp4";
+        video.loop = true;
+        video.muted = true;
+        video.setAttribute("playsinline", ""); // for mobile compatibility
 
-    const texture = new THREE.VideoTexture(video);
-    textureRef.current = texture;
+        // Attempt to play the video and catch any errors
+        await video.play().catch((err) => {
+          console.warn("⚠️ Video playback failed:", err);
+        });
 
-    scene.traverse((child) => {
-      if (child.isMesh && child.name.includes("Plane")) {
-        child.material = new THREE.MeshBasicMaterial({ map: texture });
+        // Create a texture from the video
+        const texture = new THREE.VideoTexture(video);
+        textureRef.current = texture;
+
+        // Apply the video texture to any mesh whose name includes "Plane"
+        scene.traverse((child) => {
+          if (child.isMesh && child.name.includes("Plane")) {
+            child.material = new THREE.MeshBasicMaterial({ map: texture });
+          }
+        });
+      } catch (error) {
+        console.error("🚨 Error setting up Monitor component:", error);
       }
-    });
+    };
+
+    setupScene();
   }, [scene, animations]);
 
+  // Update animations and handle monitor rotation on each frame
   useFrame((_, delta) => {
     if (mixer.current) mixer.current.update(delta);
 
@@ -46,7 +64,7 @@ function Monitor() {
 
       if (rotationRef.current >= Math.PI * 2) {
         scene.rotation.y = initialRotation.current.y; // Reset rotation
-        rotating.current = false; // Stop rotation
+        rotating.current = false; // Stop rotation after a full circle
       }
     }
   });
@@ -61,6 +79,7 @@ function AnimatedText({ text, position, fontSize, color }) {
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();
     if (ref.current) {
+      // Apply a floating effect by modifying the y position
       ref.current.position.y = position[1] + Math.sin(t * 1.5) * 0.5;
     }
   });
@@ -106,7 +125,6 @@ export default function MonitorScene() {
           position={[-7, -6, 0]}
           fontSize={2.5}
           color="#ccffcc" // soft white-green
-          outlineColor="#00ff88" // glowing green
         />
 
         <AnimatedText
@@ -114,7 +132,6 @@ export default function MonitorScene() {
           position={[-6, -10, 0]}
           fontSize={1.5}
           color="#aaffaa" // lighter green
-          outlineColor="#00ff88" // same glow
         />
 
         {/* Bloom Glow Effect */}

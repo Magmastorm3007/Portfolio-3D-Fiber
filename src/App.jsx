@@ -64,10 +64,10 @@ Digital Ocean, Ubuntu, Git, Postman.</div></p>
   <div className="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
     {[
       "C++", "Python", "JavaScript",
-      "React.js", "Node.js", "Next.js", "Tailwind CSS", "Material UI",
-      "Express.js", "ether.js", "web3.js", "Hyperledger Besu",
-      "MongoDB", "MySQL", "PySpark", "Airflow",
-      "GitHub", "Git", "Digital Ocean", "Docker", "Firebase", "AWS"
+      "React.js", "Node.js", "Tailwind CSS", "Material UI",
+      "Express.js", "PySpark", "Airflow",
+      "MongoDB", "MySQL", "Postgresql",
+      "GitHub", "Git", "Digital Ocean", "Docker", "AWS"
     ].map((skill) => (
       <span
         key={skill}
@@ -129,6 +129,10 @@ Digital Ocean, Ubuntu, Git, Postman.</div></p>
   <p className="text-base sm:text-lg md:text-xl text-white">
     📧 <a href="mailto:shashwatnath30@gmail.com" className="underline hover:text-blue-400">shashwatnath30@gmail.com</a>
   </p>
+  <p className="text-base sm:text-lg md:text-xl text-white">
+  📄 <a href="https://drive.google.com/file/d/1eZjBjr4XPhkz2nAdeqHqd4GrpFEnidFe/view?usp=sharing" className="underline hover:text-blue-400">View Resume</a>
+</p>
+
 
   {/* Social Icons */}
   <div className="flex justify-center gap-6 mt-6 text-3xl">

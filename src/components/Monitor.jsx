@@ -5,7 +5,7 @@ import * as THREE from "three";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
 function Monitor() {
-  const { scene, animations } = useGLTF("/assets/monitor2.glb", true);
+  const { scene, animations } = useGLTF("/assets/monitor2-optimized.glb", true);
   const mixer = useRef(null);
   const textureRef = useRef(null);
   const rotationRef = useRef(0); // Track rotation progress

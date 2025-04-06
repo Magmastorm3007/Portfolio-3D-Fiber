@@ -3,6 +3,7 @@ import { OrbitControls, useGLTF, Text } from "@react-three/drei";
 import { Suspense, useEffect, useRef } from "react";
 import * as THREE from "three";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
+import { isMobile } from "react-device-detect";
 
 function Monitor() {
   const { scene, animations } = useGLTF("/assets/monitor2-optimized.glb", true);
@@ -109,6 +110,26 @@ function AnimatedText({ text, position, fontSize, color }) {
 }
 
 export default function MonitorScene() {
+  // Prevent Canvas loading on mobile devices
+  if (isMobile) {
+    return (
+      <div
+        style={{
+          width: "100vw",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#000",
+          color: "#fff",
+          fontSize: "1.5rem",
+        }}
+      >
+        <p>3D experience is available only on desktop.</p>
+      </div>
+    );
+  }
+
   return (
     <Canvas
       camera={{ position: [0, 10, 40], fov: 40 }}

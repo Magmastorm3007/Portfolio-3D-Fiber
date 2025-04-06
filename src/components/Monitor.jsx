@@ -122,14 +122,14 @@ export default function MonitorScene() {
         {/* Animated Glowing Text */}
         <AnimatedText
           text="Shashwat Nath"
-          position={[-7, -6, 0]}
+          position={[-8, -6, 0]}
           fontSize={2.5}
           color="#ccffcc" // soft white-green
         />
 
         <AnimatedText
-          text="SDE | Data Engineer"
-          position={[-6, -10, 0]}
+          text="Software | Data Engineer"
+          position={[-8, -10, 0]}
           fontSize={1.5}
           color="#aaffaa" // lighter green
         />

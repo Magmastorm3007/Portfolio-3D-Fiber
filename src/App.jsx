@@ -12,15 +12,22 @@ function App() {
       <div className="relative font-sans text-[#111] leading-relaxed z-10">
         {/* Hero Section */}
         <section className="relative h-screen w-screen flex items-center justify-center overflow-hidden z-20">
-          <MonitorScene />
+          {window.innerWidth >= 480 ? (
+            <MonitorScene />
+          ) : (
+            <div className="text-center text-green-500 text-4xl font-bold">
+              Shashwat<br />
+              Software Developer | Data Engineer
+            </div>
+          )}
         </section>
 
         {/* Glowing Sections */}
         <main className="relative z-10 font-mono text-gray-200">
           <WorkExperience />
           <Projects />
-          <Skills/>
-          <Contact/>
+          <Skills />
+          <Contact />
         </main>
       </div>
     </>
